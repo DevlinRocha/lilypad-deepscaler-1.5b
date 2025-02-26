@@ -9,7 +9,7 @@ Run [DeepScaleR 1.5B](https://ollama.com/library/deepscaler) on Lilypad Network.
 ```sh
 export WEB3_PRIVATE_KEY=WEB3_PRIVATE_KEY
 
-lilypad run github.com/github_username/module_repo:v0.0.0 -i input=$(echo '{"prompt": "Which animal order do frogs belong to?", "system": "You are a helpful AI assistant", "temperature": "0.4" | base64 -w 0)
+lilypad run github.com/DevlinRocha/lilypad-deepscaler:v0.0.0 -i input=$(echo '{"prompt": "solve the following math problem: ∫(2x^3 - 5x + 4) dx from 1 to 5 + lim(x→∞) (3x^2 - 2x + 7)/(5x^2 + 4) - Σ (n=1 to 10) (n^2 / 2^n)", "temperature": "1.0"}' | base64 -w 0)
 ```
 
 ### Valid Parameters and Default Values
