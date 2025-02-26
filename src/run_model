@@ -60,7 +60,7 @@ fi
 request=$(
     cat <<EOF
 {
-  "model": $MODEL_ID,
+  "model": "$MODEL_ID",
   "messages": $messages,
   "stream": false,
   "options": {
