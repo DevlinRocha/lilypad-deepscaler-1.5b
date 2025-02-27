@@ -38,7 +38,6 @@ response=$(curl -s http://127.0.0.1:11434/api/chat \
     echo "=== Debug Info ==="
     date
     echo "Input (base64): $1"
-    echo "Decoded input: $request"
     echo "Request to Ollama: $request"
     echo "Response from Ollama:"
     echo "$response"
