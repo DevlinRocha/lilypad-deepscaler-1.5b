@@ -11,29 +11,26 @@ WORKDIR /app
 
 # Update and install necessary packages
 RUN apt-get update && apt-get install -y --no-install-recommends curl \
-  && rm -rf /var/lib/apt/lists/*
-
-# Run ollama in the background and pull the specified model
-RUN nohup bash -c "ollama serve &" && \
+  && rm -rf /var/lib/apt/lists/* \
+  # Run ollama in the background and pull the specified model
+  && nohup bash -c "ollama serve &" && \
     until curl -s http://127.0.0.1:11434 > /dev/null; do \
         echo "Waiting for ollama to start..."; \
         sleep 5; \
     done && \
-    ollama pull $MODEL_ID
+    ollama pull $MODEL_ID \
+  # Create outputs directory and set permissions
+  && mkdir -p ./outputs && chmod 777 ./outputs
 
 EXPOSE 11434
-
-# Create outputs directory and set permissions
-RUN mkdir -p ./outputs && chmod 777 ./outputs
-
-# Set outputs directory as a volume
-VOLUME ./outputs
 
 # Copy source code
 COPY src ./src
 
 RUN chmod +x ./src/run_model
 
+# Set outputs directory as a volume
+VOLUME ./outputs
 
 # Set the entrypoint to the script
 ENTRYPOINT ["/app/src/run_model"]
